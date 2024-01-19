@@ -1,0 +1,76 @@
+from tkinter import *
+from PIL import ImageTk, Image 
+
+#function to submit the data introduced by customer
+def submit():
+  #print("Username",username.get())
+  print("First Name", first_name.get())
+  print("Surname", surname.get())
+  print("Email", email.get())
+
+#function to clear the data entered by customer
+def clear():
+  #username.delete(0, END)
+  first_name.delete(0, END)
+  surname.delete(0,END)
+  email.delete(0,END)
+
+# create a fixed size window, which is the main/master/mother window/frame
+root =Tk()
+root.geometry("575x475")
+root.title("Cafe-Restaurant Nero")
+root.resizable(False, False)
+root.configure(background="white")
+
+#create the frame for the header/cafe-restaurant name(child of the main frame)
+frame_heading=Frame(root)
+frame_heading.grid(row=0, column=0, columnspan=2, padx=30, pady=5)
+
+#place the name of the cafe
+#Label(frame_heading, text="Restaurant Cafe Nero", font=('Times New Roman', 8)).grid(row=0, column=0, padx=0, pady=5)
+
+#place an image for the restaurant-cafe Nero
+image=Image.open('nero.png')
+image.resize((5,5))
+photo=ImageTk.PhotoImage(image)
+Label(frame_heading, image=photo).grid(row=0, column=1, columnspan=2, padx=0, pady=5)
+
+
+#create a frame(child of main frame) for the labels and user entry ( labels = username, first name & surname  
+#and user entry = the entry fields for each label)
+frame_entry=Frame(root)
+frame_entry.grid(row=1, column=0, columnspa=2,padx=25, pady=10)
+
+#place the labels
+#Label(frame_entry, text="Username:").grid(row=0,column=0,padx=10, pady=5)
+Label(frame_entry, text="First name: ").grid(row=0, column=0, padx=10, pady=5)
+Label(frame_entry, text="Surname:").grid(row=1, column=0, padx=10, pady=5)
+Label(frame_entry,text="Email:").grid(row=2, column=0, padx=10,pady=5) 
+
+#place the text entry fields
+#username=Entry(frame_entry, width=15, bg="white")
+#username.grid(row=0,column=1,padx=5, pady=5)
+
+first_name=Entry(frame_entry,width=15,bg="white")
+first_name.grid(row=0, column=1,padx=5, pady=5)
+
+surname=Entry(frame_entry,width=15, bg="white")
+surname.grid(row=1,column=1,padx=5,pady=5)
+
+email=Entry(frame_entry,width=15,bg="white")
+email.grid(row=2, column=1, padx=5, pady=5)
+
+
+#place the Submit and Clear buttons
+submit_button=Button(root, text="Submit",width=7, command=submit)
+submit_button.grid(row=2, column=0, padx=0, pady=5)
+
+clear_button=Button(root, text="Clear", width=7, command=clear)
+clear_button.grid(row=2,column=1, padx=5, pady=5)
+
+
+
+
+#run the mainloop to draw the window and to start the program running
+root.mainloop()
+
